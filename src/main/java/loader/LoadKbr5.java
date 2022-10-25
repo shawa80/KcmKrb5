@@ -7,25 +7,26 @@ public class LoadKbr5 {
 		public static void main(String[] args) {
 			
 				        
-			Context context = new Context();
+			var context = new Context();
 			
-			CCache cache = context.getDefaultCache();
+			var cache = context.getDefaultCache();
 	        System.out.println(cache.getType());
 	        
-	        Cursor ccCursor = cache.startSeq();
+	        try (var ccCursor = cache.startSeq()){
         
-	        while(ccCursor.hasNext()) {
+		        while(ccCursor.hasNext()) {
+		        
+		        	var cred= ccCursor.get();
 	        
-	        	krb5_creds cred= ccCursor.get();
-        
-		        System.out.println(cred.client.getNameFQN());
-		        System.out.println(cred.server.getNameFQN());
-		            
-		        for (byte b : cred.ticket.getData())
-		        	System.out.print(String.format("%02x", b));
-		        System.out.println();
+			        System.out.println(cred.client.getNameFQN());
+			        System.out.println(cred.server.getNameFQN());
+			            
+			        for (var b : cred.ticket.getData())
+			        	System.out.print(String.format("%02x", b));
+			        System.out.println();
+		        }
 	        }
-	        ccCursor.close();
+
 	        //Pointer[] ps = cred.addresses.getPointer().getPointerArray(0);
 	        //System.out.println(ps.length);
 	        
