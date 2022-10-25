@@ -9,24 +9,15 @@ public class LoadKbr5 {
 		
 		public static void main(String[] args) {
 			
-			PointerByReference contextRef = new PointerByReference();
-			PointerByReference ccacheRef = new PointerByReference();
-			PointerByReference ccCursor = new PointerByReference();
+				        
+			Context context = new Context();
 			
-			krb5_creds cred = new krb5_creds.ByReference();
-			
-	        CLibrary.INSTANCE.krb5_init_context(contextRef);
-	        Pointer context = contextRef.getValue();
+			CCache cache = context.getDefaultCache();
+	        System.out.println(cache.getType());
 	        
-	        CLibrary.INSTANCE.krb5_cc_default(context, ccacheRef);
-	        Pointer ccache = ccacheRef.getValue();
-	        
-	        String cacheName = CLibrary.INSTANCE.krb5_cc_get_type(context, ccache);
-	        System.out.println(cacheName);
-	        
-	        CLibrary.INSTANCE.krb5_cc_start_seq_get(context, ccache, ccCursor);
-	        
-	        CLibrary.INSTANCE.krb5_cc_next_cred(context, ccache, ccCursor, cred);
+	        Cursor ccCursor = cache.startSeq();
+        
+	        krb5_creds cred = ccCursor.Next();
 	        
 	        System.out.println(cred.client.realm.length);
 	        
