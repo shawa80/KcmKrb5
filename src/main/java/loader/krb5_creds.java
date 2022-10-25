@@ -7,6 +7,10 @@ import com.sun.jna.Structure.FieldOrder;
 	"is_skey", "ticket_flags", "addresses", "ticket", "second_ticket", "authdata"})
 public class krb5_creds extends Structure {
 
+	public static class ByReference extends krb5_creds implements Structure.ByReference { }
+	public static class ByValue extends krb5_creds implements Structure.ByValue { }
+
+	
 	public int magic;
     public krb5_principal.ByReference client;
     public krb5_principal.ByReference server;

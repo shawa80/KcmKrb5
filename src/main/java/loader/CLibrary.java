@@ -14,5 +14,6 @@ public interface CLibrary extends Library {
     String krb5_cc_get_type(Pointer context, Pointer ccache);
     int krb5_cc_start_seq_get(Pointer context, Pointer ccache, PointerByReference cursor);
     
-    int krb5_cc_next_cred(Pointer context, Pointer ccache, PointerByReference cursor, krb5_creds[] cred);
+    int krb5_cc_next_cred(Pointer context, Pointer ccache, PointerByReference cursor, 
+    		krb5_creds cred);
 }

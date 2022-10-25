@@ -18,4 +18,21 @@ public class krb5_principal extends Structure {
 
         return (krb5_data[])data.toArray(length);
     }
+    
+    
+    public String getNameFQN() {
+    	
+    	String name = "";
+    	String token = "";
+    	
+        for (krb5_data x : getData()) {
+        	name += token + x.getDataAsString();
+        	token = "/";
+        }
+        name += "@" + realm.getDataAsString();
+        
+        return name;
+        
+    }
+    
 }
