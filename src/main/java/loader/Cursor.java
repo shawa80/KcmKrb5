@@ -20,9 +20,21 @@ public class Cursor {
 		CLibrary.INSTANCE.krb5_cc_start_seq_get(context, ccache, ccCursor);
 	}
 
-	public krb5_creds Next() {
-		CLibrary.INSTANCE.krb5_cc_next_cred(context, ccache, ccCursor, cred);
+	public boolean hasNext() {
+		
+		if (cred != null) //TODO where to free???
+			CLibrary.INSTANCE.krb5_free_cred_contents(context, cred);
+		
+		int result = CLibrary.INSTANCE.krb5_cc_next_cred(context, ccache, ccCursor, cred);
+		
+		return result == 0; //TODO close on finished?
+	}
+	public krb5_creds get() {
 		
 		return cred;
+	}
+	
+	public void close() { //TODO add to final?
+		CLibrary.INSTANCE.krb5_cc_end_seq_get(context, ccache, ccCursor);
 	}
 }
