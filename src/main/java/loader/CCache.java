@@ -1,10 +1,12 @@
 package loader;
 
+import java.util.Iterator;
+
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.PointerByReference;
 
-public class CCache {
+public class CCache implements Iterable<krb5_creds>{
 
 	private Pointer ccache;
 	private Pointer context;
@@ -28,6 +30,11 @@ public class CCache {
 		
 	
 		return new Cursor(context, ccache);
+	}
+
+	@Override
+	public Iterator<krb5_creds> iterator() {
+		return startSeq();
 	}
 	
 }

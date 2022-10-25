@@ -12,20 +12,19 @@ public class LoadKbr5 {
 			var cache = context.getDefaultCache();
 	        System.out.println(cache.getType());
 	        
-	        try (var ccCursor = cache.startSeq()){
+	        //try (var ccCursor = cache.startSeq()){
         
-		        while(ccCursor.hasNext()) {
-		        
-		        	var cred= ccCursor.get();
-	        
-			        System.out.println(cred.client.getNameFQN());
+	        	//TODO need to do memory management
+	        	for(var cred : cache) {
+	        		System.out.println(cred.client.getNameFQN());
 			        System.out.println(cred.server.getNameFQN());
 			            
 			        for (var b : cred.ticket.getData())
 			        	System.out.print(String.format("%02x", b));
 			        System.out.println();
-		        }
-	        }
+	        	}
+	        	
+	        //}
 
 	        //Pointer[] ps = cred.addresses.getPointer().getPointerArray(0);
 	        //System.out.println(ps.length);

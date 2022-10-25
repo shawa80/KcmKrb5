@@ -1,11 +1,12 @@
 package loader;
 
 import java.io.Closeable;
+import java.util.Iterator;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 
-public class Cursor implements Closeable {
+public class Cursor implements Closeable, Iterator<krb5_creds> {
 
 	private Pointer context;
 	private Pointer ccache;
@@ -22,6 +23,7 @@ public class Cursor implements Closeable {
 		CLibrary.INSTANCE.krb5_cc_start_seq_get(context, ccache, ccCursor);
 	}
 
+	@Override
 	public boolean hasNext() {
 		
 		if (cred != null) //TODO where to free???
@@ -31,7 +33,9 @@ public class Cursor implements Closeable {
 		
 		return result == 0; //TODO close on finished?
 	}
-	public krb5_creds get() {
+	
+	@Override
+	public krb5_creds next() {
 		
 		return cred;
 	}
