@@ -1,12 +1,12 @@
 package loader;
 
-public class LoadKbr5 {
+import sun.security.krb5.*;
 
-		
+
+public class LoadKbr5 {
 		
 		public static void main(String[] args) {
-			
-				        
+
 			var context = new Context();
 			
 			var cache = context.getDefaultCache();
@@ -31,6 +31,9 @@ public class LoadKbr5 {
 	        
 	        //Pointer[] p2 = cred.authdata.getPointer().getPointerArray(0);
 	        //System.out.println(p2.length);
+	        	
+	        	
+	        Credentials test;
 	    }
 
 	
