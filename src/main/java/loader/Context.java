@@ -3,7 +3,7 @@ package loader;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 
-public class Context
+public class Context implements AutoCloseable
 {
 	private Pointer context;
 
@@ -18,6 +18,12 @@ public class Context
 	
 	public CCache getDefaultCache() {
 		return new CCache(context);
+	}
+
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

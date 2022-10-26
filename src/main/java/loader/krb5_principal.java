@@ -19,6 +19,16 @@ public class krb5_principal extends Structure {
         return (krb5_data[])data.toArray(length);
     }
     
+    public String[] getDatas() {
+    	var result = new String[length];
+    	var data = getData();
+    	
+    	for (int i = 0; i < length; i++) {
+    		result[i] = data[i].getDataAsString();
+    	}
+    	
+    	return result;
+    }
     
     public String getNameFQN() {
     	
