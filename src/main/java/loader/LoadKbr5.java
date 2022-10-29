@@ -57,7 +57,7 @@ public class LoadKbr5 {
 			        		cred.keyblock.enctype,
 	                        null);
 			        
-			        var flags = new TicketFlags(); //TODO populate this
+			        var flags = new TicketFlags(cred.getFlags());
 			        
 			        var authTime = new KerberosTime(cred.times.authtime);
 			        var startTime = new KerberosTime(cred.times.starttime);
