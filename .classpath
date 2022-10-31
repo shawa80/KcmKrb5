@@ -4,12 +4,14 @@
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="module" value="true"/>
+			<attribute name="add-exports" value="KcmKrb5/loader=java.security.jgss"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
 			<attribute name="module" value="true"/>
-			<attribute name="add-exports" value="java.security.jgss/sun.security.krb5=KcmKrb5:java.security.jgss/sun.security.krb5.internal=KcmKrb5"/>
+			<attribute name="add-exports" value="java.security.jgss/sun.security.krb5=KcmKrb5:java.security.jgss/sun.security.krb5.internal=KcmKrb5:jdk.security.auth/com.sun.security.auth.module=KcmKrb5"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
