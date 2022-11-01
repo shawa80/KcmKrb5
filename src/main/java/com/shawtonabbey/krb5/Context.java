@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.krb5;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;

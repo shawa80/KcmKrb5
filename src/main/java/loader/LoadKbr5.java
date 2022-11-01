@@ -1,5 +1,7 @@
 package loader;
 
+import com.shawtonabbey.krb5.Context;
+
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.MethodDelegation;
@@ -89,7 +91,7 @@ public class LoadKbr5 {
         	}
         	
         } catch (Exception ex) {
-        	
+        	ex.printStackTrace();
         }
 
         //Pointer[] ps = cred.addresses.getPointer().getPointerArray(0);
@@ -101,12 +103,7 @@ public class LoadKbr5 {
         	
 
     }
-	public static Credentials acquireDefaultCreds() {
-		
-		System.out.println("kbr5");
-		
-		return null;
-	}
+
 
 	private static void byteBuddySetup() throws Exception{
 		
@@ -114,8 +111,7 @@ public class LoadKbr5 {
 		new ByteBuddy()
 		  .redefine(Credentials.class)
 		  .method(ElementMatchers.named("acquireDefaultCreds"))
-		  .intercept(MethodDelegation.to(LoadKbr5.class))
-		  //.name(Credentials.class.getName())
+		  .intercept(MethodDelegation.to(CreateCredIntercepter.class))
 		  .make()
 		  .load(
 				  Credentials.class.getClassLoader(), 

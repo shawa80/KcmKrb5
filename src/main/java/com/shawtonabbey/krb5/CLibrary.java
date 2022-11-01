@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.krb5;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

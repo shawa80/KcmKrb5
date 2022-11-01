@@ -1,5 +1,6 @@
 module KcmKrb5 {
 	exports loader;
+	exports com.shawtonabbey.krb5;
 
 	requires com.sun.jna;
 	requires java.security.jgss;
