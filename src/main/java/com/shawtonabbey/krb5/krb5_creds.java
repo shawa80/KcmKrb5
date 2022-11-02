@@ -1,5 +1,7 @@
 package com.shawtonabbey.krb5;
 
+import java.util.List;
+
 import com.sun.jna.Structure;
 import com.sun.jna.Structure.FieldOrder;
 
@@ -27,5 +29,9 @@ public class krb5_creds extends Structure {
 	
     public boolean[] getFlags() {
     	return TicketFlags.flagSet(ticket_flags);
+    }
+    
+    public List<TicketFlags> getFlagSet() {
+    	return TicketFlags.getSet(ticket_flags);
     }
 }

@@ -12,7 +12,8 @@ public class IntercepterInstaller {
 	
 		new ByteBuddy()
 		  .redefine(Credentials.class)
-		  .method(ElementMatchers.named("acquireDefaultCreds"))
+		  //.method(ElementMatchers.named("acquireDefaultCreds"))
+		  .method(ElementMatchers.named("acquireTGTFromCache"))
 		  .intercept(MethodDelegation.to(CreateCredIntercepter.class))
 		  .make()
 		  .load(

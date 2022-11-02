@@ -7,4 +7,5 @@ module KcmKrb5 {
 	requires net.bytebuddy;
 	requires net.bytebuddy.agent;
 	requires jdk.security.auth;
+	requires java.sql;
 }

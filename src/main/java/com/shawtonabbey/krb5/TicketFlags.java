@@ -1,5 +1,8 @@
 package com.shawtonabbey.krb5;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sun.security.krb5.internal.Krb5;
 
 public enum TicketFlags {
@@ -36,6 +39,19 @@ public enum TicketFlags {
 		for (var flag : TicketFlags.values()) {
 			if ((data & flag.bitValue) == flag.bitValue) {
 				flags[flag.krbFlagPos] = true;
+			}
+		}
+		
+		return flags;
+	}
+	
+	public static List<TicketFlags> getSet(long data) {
+		
+		var flags = new ArrayList<TicketFlags>();
+		
+		for (var flag : TicketFlags.values()) {
+			if ((data & flag.bitValue) == flag.bitValue) {
+				flags.add(flag);
 			}
 		}
 		
