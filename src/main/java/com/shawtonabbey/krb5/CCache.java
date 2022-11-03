@@ -5,35 +5,53 @@ import java.util.Iterator;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.PointerByReference;
 
-public class CCache implements Iterable<krb5_creds> {
+public class CCache implements Iterable<krb5_creds>, AutoCloseable {
 
 	private Pointer ccache;
-	private Pointer context;
+	private Context context;
+	private boolean isClosed = false;
 	
-	public CCache(Pointer context) {
+	public CCache(Context context) {
 		
 		this.context = context;
 		PointerByReference ccacheRef = new PointerByReference();
 		
-		CLibrary.INSTANCE.krb5_cc_default(context, ccacheRef);
+		CLibrary.INSTANCE.krb5_cc_default(context.getContextPointer(), ccacheRef);
         ccache = ccacheRef.getValue();
 		
 	}
 	
 	public String getType() {
 		
-		return CLibrary.INSTANCE.krb5_cc_get_type(context, ccache);
-	}
-	
-	public Cursor startSeq() {
+		if (isClosed)
+			throw new IllegalStateException("Already cleaned up");
 		
-	
-		return new Cursor(context, ccache);
+		return CLibrary.INSTANCE.krb5_cc_get_type(context.getContextPointer(), ccache);
 	}
+	
 
 	@Override
 	public Iterator<krb5_creds> iterator() {
-		return startSeq();
+		
+		if (isClosed)
+			throw new IllegalStateException("Already cleaned up");
+		
+		var cursor = new Cursor(context, ccache);
+		
+		context.addToCleanup(cursor);
+		
+		return cursor;
+	}
+
+	@Override
+	public void close() throws Exception {
+		
+		if (isClosed)
+			return;
+		
+		//TODO clean up cache?
+		
+		
 	}
 	
 }
