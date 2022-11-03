@@ -2,8 +2,6 @@ package loader;
 
 import java.sql.DriverManager;
 
-import sun.security.krb5.*;
-
 
 public class LoadKbr5 {
 		
