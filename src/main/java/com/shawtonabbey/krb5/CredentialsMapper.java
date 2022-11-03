@@ -1,5 +1,7 @@
 package com.shawtonabbey.krb5;
 
+import java.io.IOException;
+
 import sun.security.krb5.Asn1Exception;
 import sun.security.krb5.Credentials;
 import sun.security.krb5.EncryptedData;
@@ -8,6 +10,7 @@ import sun.security.krb5.PrincipalName;
 import sun.security.krb5.Realm;
 import sun.security.krb5.RealmException;
 import sun.security.krb5.internal.KerberosTime;
+import sun.security.krb5.internal.KrbApErrException;
 import sun.security.krb5.internal.Ticket;
 import sun.security.krb5.internal.TicketFlags;
 
@@ -38,12 +41,14 @@ public class CredentialsMapper {
 				null,
 				cred.ticket.getData()
 	        );
-		
+	
 	       
-	        var ticket = new Ticket(
-	        	clientPrincipalName, //which principal goes here??
-	        	encrypted
-	        );
+	        //var ticket = new Ticket(new DerValue(cred.))
+	        var ticket = new Ticket(cred.ticket.getData());
+	        //var ticket = new Ticket(
+	        //	clientPrincipalName, //which principal goes here??
+	        //	encrypted
+	        //);
 	        
 	        var encrKey = new EncryptionKey(
 	        		cred.keyblock.getContents(),
@@ -80,8 +85,8 @@ public class CredentialsMapper {
 	        
 	        return credential;
         
-		} catch (RealmException | Asn1Exception e) {
+		} catch (Exception e) {
 			return null;
-		}
+		} 
 	}
 }
