@@ -52,10 +52,16 @@ public class CredentialsMapper {
 	        
 	        var flags = new TicketFlags(cred.getFlags());
 	        
-	        var authTime = new KerberosTime(cred.times.authtime);
-	        var startTime = new KerberosTime(cred.times.starttime);
-	        var endTime = new KerberosTime(cred.times.endtime);
-	        var renew = new KerberosTime(cred.times.renew_till);
+	        var authTimeMilsec = (cred.times.authtime & 0xFFFFFFFFL) * 1000;
+	        var startTimeMilsec = (cred.times.starttime & 0xFFFFFFFFL) * 1000;
+	        var endTimeMilsec = (cred.times.endtime & 0xFFFFFFFFL) * 1000;
+	        var renewTimeMilsec = (cred.times.renew_till & 0xFFFFFFFFL) * 1000;
+	        
+	        
+	        var authTime = new KerberosTime(authTimeMilsec);
+	        var startTime = new KerberosTime(startTimeMilsec);
+	        var endTime = new KerberosTime(endTimeMilsec);
+	        var renew = new KerberosTime(renewTimeMilsec);
 	        
 	        var credential = new Credentials(
 	        		ticket,
