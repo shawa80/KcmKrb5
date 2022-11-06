@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.kerberos;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
@@ -12,7 +12,6 @@ public class IntercepterInstaller {
 	
 		new ByteBuddy()
 		  .redefine(Credentials.class)
-		  //.method(ElementMatchers.named("acquireDefaultCreds"))
 		  .method(ElementMatchers.named("acquireTGTFromCache"))
 		  .intercept(MethodDelegation.to(CreateCredIntercepter.class))
 		  .make()

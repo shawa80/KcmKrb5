@@ -1,6 +1,7 @@
 module KcmKrb5 {
 	exports loader;
 	exports com.shawtonabbey.krb5;
+	exports com.shawtonabbey.kerberos;
 
 	requires transitive com.sun.jna;
 	requires transitive java.security.jgss;

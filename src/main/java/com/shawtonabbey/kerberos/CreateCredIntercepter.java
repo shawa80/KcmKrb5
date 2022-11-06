@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.kerberos;
 
 import com.shawtonabbey.krb5.Context;
 import com.shawtonabbey.krb5.CredentialsMapper;

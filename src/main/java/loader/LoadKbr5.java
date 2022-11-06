@@ -2,6 +2,9 @@ package loader;
 
 import java.sql.DriverManager;
 
+import com.shawtonabbey.kerberos.CustomConfig;
+import com.shawtonabbey.kerberos.IntercepterInstaller;
+
 
 public class LoadKbr5 {
 		
@@ -10,10 +13,7 @@ public class LoadKbr5 {
 		javax.security.auth.login.Configuration.setConfiguration(new CustomConfig());
 		IntercepterInstaller.install();
 		
-		//var bbTest = Credentials.acquireDefaultCreds();
-		
-		//System.out.println(bbTest);
-		
+	
 		var con = DriverManager.getConnection("jdbc:postgresql://pi3.shawtonabbey.com/addressbook");
 
 		var sqlStr = "SELECT datname FROM pg_database " +

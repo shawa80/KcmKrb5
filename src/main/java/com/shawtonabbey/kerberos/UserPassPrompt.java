@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.kerberos;
 
 import java.io.IOException;
 

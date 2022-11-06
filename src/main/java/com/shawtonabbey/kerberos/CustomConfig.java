@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.kerberos;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ import javax.security.auth.login.AppConfigurationEntry;
 public class CustomConfig extends javax.security.auth.login.Configuration {
 
 	private static final String AUTH_MODULE =
-            "loader.KerberosLogin";
+            "com.shawtonabbey.kerberos.KerberosLogin";
   
     @Override
     public AppConfigurationEntry[] getAppConfigurationEntry(String name) {

@@ -1,4 +1,4 @@
-package loader;
+package com.shawtonabbey.kerberos;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +18,8 @@ public class KerberosLogin extends Krb5LoginModule {
 		
 		var map = copy(options);
 		
-		//if (cachePath != null) {
-			map.put("useTicketCache", "true");
-		//	map.put("ticketCache", cachePath);
-		//}
-		
+		map.put("useTicketCache", "true");
+
 		map.put("tryFirstPass",  "false");
 		map.put("doNotPrompt",  "true");
 		map.put("debug",  "true");
