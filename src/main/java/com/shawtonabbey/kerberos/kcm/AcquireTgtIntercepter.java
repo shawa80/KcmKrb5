@@ -1,13 +1,12 @@
-package com.shawtonabbey.kerberos;
+package com.shawtonabbey.kerberos.kcm;
 
 import com.shawtonabbey.krb5.Context;
-import com.shawtonabbey.krb5.CredentialsMapper;
 import com.shawtonabbey.krb5.TicketFlags;
 
 import sun.security.krb5.Credentials;
 import sun.security.krb5.PrincipalName;
 
-public class CreateCredIntercepter {
+public class AcquireTgtIntercepter {
 	
 	
 	public static Credentials acquireTGTFromCache(

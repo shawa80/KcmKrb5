@@ -1,4 +1,4 @@
-package com.shawtonabbey.kerberos;
+package loader;
 
 import java.util.HashMap;
 

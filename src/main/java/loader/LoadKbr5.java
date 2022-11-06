@@ -2,8 +2,7 @@ package loader;
 
 import java.sql.DriverManager;
 
-import com.shawtonabbey.kerberos.CustomConfig;
-import com.shawtonabbey.kerberos.IntercepterInstaller;
+import com.shawtonabbey.kerberos.kcm.KerberosCacheIntercept;
 
 
 public class LoadKbr5 {
@@ -11,7 +10,7 @@ public class LoadKbr5 {
 	public static void main(String[] args) throws Exception{
 
 		javax.security.auth.login.Configuration.setConfiguration(new CustomConfig());
-		IntercepterInstaller.install();
+		KerberosCacheIntercept.installKcm();
 		
 	
 		var con = DriverManager.getConnection("jdbc:postgresql://pi3.shawtonabbey.com/addressbook");

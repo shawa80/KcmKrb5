@@ -1,4 +1,4 @@
-package com.shawtonabbey.kerberos;
+package com.shawtonabbey.kerberos.kcm;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
@@ -6,14 +6,14 @@ import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.matcher.ElementMatchers;
 import sun.security.krb5.Credentials;
 
-public class IntercepterInstaller {
+public class KerberosCacheIntercept {
 
-	public static void install() {
+	public static void installKcm() {
 	
 		new ByteBuddy()
 		  .redefine(Credentials.class)
 		  .method(ElementMatchers.named("acquireTGTFromCache"))
-		  .intercept(MethodDelegation.to(CreateCredIntercepter.class))
+		  .intercept(MethodDelegation.to(AcquireTgtIntercepter.class))
 		  .make()
 		  .load(
 				  Credentials.class.getClassLoader(), 

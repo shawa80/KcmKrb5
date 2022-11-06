@@ -1,4 +1,6 @@
-package com.shawtonabbey.krb5;
+package com.shawtonabbey.kerberos.kcm;
+
+import com.shawtonabbey.krb5.krb5_creds;
 
 import sun.security.krb5.Credentials;
 import sun.security.krb5.EncryptionKey;
