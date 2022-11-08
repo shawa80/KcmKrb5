@@ -60,3 +60,16 @@ public class CustomConfig extends javax.security.auth.login.Configuration {
 	
 }
 ```
+# starting test app
+
+```
+/usr/lib/jvm/java-11-openjdk-11.0.9.11-0.fc31.x86_64/bin/java \
+--module-path ./kcmTest.jar:./kcmTest_lib/jna-5.12.1.jar:./kcmTest_lib/byte-buddy-agent-1.12.18.jar:./kcmTest_lib/byte-buddy-1.12.18.jar:./kcmTest_lib/postgresql-42.3.1.jar \
+--add-reads java.security.jgss=KcmKrb5 \
+--add-exports KcmKrb5/loader=java.security.jgss \
+--add-exports KcmKrb5/com.shawtonabbey.kerberos=java.security.jgss \
+--add-exports java.security.jgss/sun.security.krb5=KcmKrb5 \
+--add-exports java.security.jgss/sun.security.krb5.internal=KcmKrb5 \
+--add-exports jdk.security.auth/com.sun.security.auth.module=KcmKrb5 \
+-m KcmKrb5/loader.LoadKbr5 
+```
