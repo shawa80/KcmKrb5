@@ -1,6 +1,7 @@
 package com.shawtonabbey.kerberos.kcm;
 
 import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.matcher.ElementMatchers;
@@ -10,6 +11,8 @@ public class KerberosCacheIntercept {
 
 	public static void installKcm() {
 	
+		ByteBuddyAgent.install();
+		
 		new ByteBuddy()
 		  .redefine(Credentials.class)
 		  .method(ElementMatchers.named("acquireTGTFromCache"))

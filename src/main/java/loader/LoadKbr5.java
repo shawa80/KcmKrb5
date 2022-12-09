@@ -9,6 +9,11 @@ public class LoadKbr5 {
 		
 	public static void main(String[] args) throws Exception{
 
+		System.out.println("----" + args.length + "---");
+		for (var a : args) {
+			System.out.println(a);
+		}
+		
 		javax.security.auth.login.Configuration.setConfiguration(new CustomConfig());
 		KerberosCacheIntercept.installKcm();
 		
